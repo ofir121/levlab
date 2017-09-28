@@ -1,0 +1,4 @@
+exec(open('Scripts\myImporter.py').read())
+
+
+https://github.com/codingforentrepreneurs/Django-Chart.js/

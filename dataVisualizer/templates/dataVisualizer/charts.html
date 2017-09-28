@@ -1,0 +1,60 @@
+
+{% extends 'dataVisualizer/base.html' %}
+
+
+
+
+
+{% block jquery %}
+var endpoint = '{% url 'dataVisualizer:api-data' %}'
+var defaultData = []
+var labels = [];
+
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        labels = data.labels
+        defaultData = data.default
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: [{
+                x: -10,
+                y: 0
+            }, {
+                x: 0,
+                y: 10
+            }, {
+                x: 10,
+                y: 5
+            }]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
+
+{% endblock %}
+
+
+{% block body %}
+<canvas id="myChart" width="100" height="100"></canvas>
+{% endblock %}

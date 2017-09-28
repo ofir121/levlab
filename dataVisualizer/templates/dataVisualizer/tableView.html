@@ -1,0 +1,15 @@
+
+{% extends 'dataVisualizer/base.html' %}
+
+
+{% block head %}
+
+{# tutorial/templates/people.html #}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% endblock %}
+
+
+{% block body %}
+<table>{% render_table table %}</table>
+{% endblock %}
